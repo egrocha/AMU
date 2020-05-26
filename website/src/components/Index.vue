@@ -1,23 +1,103 @@
 <template>
     <div>
-		<v-toolbar color="red">
+		  <v-toolbar color="red">
     		<v-toolbar-title>Administração do Sistema</v-toolbar-title>
     		<v-spacer></v-spacer>
     		<v-toolbar-items class="hidden-sm-and-down">
     		  <v-btn flat disabled>Lista de Espaços</v-btn>
     		  <v-btn flat href="/admin">Admin</v-btn>
     		</v-toolbar-items>
-		</v-toolbar>
-        <v-container fluid grid-list-md text-xs-center>
-            <v-layout row wrap>
-            </v-layout>
-        </v-container>
+		  </v-toolbar>
+      <v-container fluid grid-list-md text-xs-center>
+        <v-layout row wrap>
+          <v-flex xs12>
+            <v-card-title>
+              <v-flex xs3>
+                <v-text-field
+                  v-model="search"
+                  append-icon="search"
+                  label="Search Space"
+                  single-line
+                  hide-details
+                >
+                </v-text-field>
+              </v-flex>
+            </v-card-title>
+            <v-data-table
+              :headers="headers"
+              :items="matches"
+              :search="search"
+              item-key="match_id"
+              class="elevation-1"
+            >
+              <template v-slot:items="props">
+                <tr @click="props.expanded = !props.expanded">
+                  <td class="text-xs-left">
+                    {{props.item.placeholder}}
+                  </td>
+                </tr>
+              </template>
+              <template v-slot:expand="props">
+                <v-card flat @click="expandClicked(props.item)">
+                  <v-card-text>
+                    <v-container grid-list-md text-xs-center>
+                      <v-layout row wrap>
+                        <v-flex xs4>
+                          <v-card dark>
+                            <v-card-text class="px-0">
+                              Placeholder: {{ props.item.placeholder}}
+                            </v-card-text>
+                          </v-card>
+                        </v-flex>
+                      </v-layout>
+                    </v-container>
+                  </v-card-text>
+                </v-card>
+              </template>
+              <template v-slot:no-results>
+                <v-alert :value="true" color="error" icon="warning">
+                  There are no results for "{{ search }}".
+                </v-alert>
+              </template>
+            </v-data-table>
+          </v-flex>
+        </v-layout>
+      </v-container>
     </div>
 </template>
 
 <script>
+  import axios from 'axios'
+  const host = 'http://localhost:3000'
   export default{
-      
+    data(){
+      return{
+        expand: false,
+        search: '',
+        headers:[
+          {
+            text: 'Placeholder',
+            align: 'left',
+            sortable: true,
+            value: 'placeholder'
+          },
+        ],
+      }
+    },
+    mounted: async function(){
+      try{
+        var res = await axios.get(host + '/matches')
+        this.matches = res.data
+      }
+      catch(e){
+        return e
+      }
+    },
+    methods: {
+      expandClicked: function(item){
+        this.$router.push('/space/' + item.placeholder)
+      }
+    }
   }
 </script>
 
