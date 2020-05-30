@@ -4,8 +4,8 @@
     		<v-toolbar-title>Administração do Sistema</v-toolbar-title>
     		<v-spacer></v-spacer>
     		<v-toolbar-items class="hidden-sm-and-down">
-    		  <v-btn flat disabled>Lista de Espaços</v-btn>
-    		  <v-btn flat href="/admin">Admin</v-btn>
+    		  <v-btn text disabled>Lista de Espaços</v-btn>
+    		  <v-btn text href="/admin">Admin</v-btn>
     		</v-toolbar-items>
 		  </v-toolbar>
       <v-container fluid grid-list-md text-xs-center>
@@ -16,7 +16,7 @@
                 <v-text-field
                   v-model="search"
                   append-icon="search"
-                  label="Search Space"
+                  label="Procurar Espaço"
                   single-line
                   hide-details
                 >
@@ -25,35 +25,30 @@
             </v-card-title>
             <v-data-table
               :headers="headers"
-              :items="matches"
+              :items="spaces"
               :search="search"
-              item-key="match_id"
+              item-key="name"
               class="elevation-1"
+              @click:row="redirectSpace"
             >
+              <!--
               <template v-slot:items="props">
-                <tr @click="props.expanded = !props.expanded">
+                <tr @click="redirectSpace(props.item)">
                   <td class="text-xs-left">
-                    {{props.item.placeholder}}
+                    {{props.item.name}}
                   </td>
                 </tr>
               </template>
+              -->
+              <!--
               <template v-slot:expand="props">
                 <v-card flat @click="expandClicked(props.item)">
                   <v-card-text>
-                    <v-container grid-list-md text-xs-center>
-                      <v-layout row wrap>
-                        <v-flex xs4>
-                          <v-card dark>
-                            <v-card-text class="px-0">
-                              Placeholder: {{ props.item.placeholder}}
-                            </v-card-text>
-                          </v-card>
-                        </v-flex>
-                      </v-layout>
-                    </v-container>
+                    Nome: {{ props.item.name}}
                   </v-card-text>
                 </v-card>
               </template>
+              -->
               <template v-slot:no-results>
                 <v-alert :value="true" color="error" icon="warning">
                   There are no results for "{{ search }}".
@@ -68,34 +63,35 @@
 
 <script>
   import axios from 'axios'
-  const host = 'http://localhost:3000'
-  export default{
+  const host = 'http://localhost:8080'
+  export default {
     data(){
       return{
         expand: false,
         search: '',
         headers:[
           {
-            text: 'Placeholder',
+            text: 'Espaços',
             align: 'left',
             sortable: true,
-            value: 'placeholder'
+            value: 'name'
           },
         ],
+        spaces: []
       }
     },
     mounted: async function(){
       try{
-        var res = await axios.get(host + '/matches')
-        this.matches = res.data
+        var res = await axios.get(host + '/spaces')
+        this.spaces = res.data
       }
       catch(e){
         return e
       }
     },
     methods: {
-      expandClicked: function(item){
-        this.$router.push('/space/' + item.placeholder)
+      redirectSpace(item){
+        this.$router.push('/spaces/' + item._id)
       }
     }
   }
