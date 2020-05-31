@@ -1,6 +1,6 @@
 <template>
     <div>
-		  <v-toolbar color="red">
+		  <v-toolbar color="blue">
     		<v-toolbar-title>Administração do Sistema</v-toolbar-title>
     		<v-spacer></v-spacer>
     		<v-toolbar-items class="hidden-sm-and-down">
@@ -71,11 +71,17 @@
         search: '',
         headers:[
           {
-            text: 'Espaços',
+            text: 'Nome',
             align: 'left',
             sortable: true,
             value: 'name'
           },
+          {
+            text: 'Reservado',
+            align: 'left',
+            sortable: true,
+            value: 'reserved'
+          }
         ],
         spaces: []
       }
