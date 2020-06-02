@@ -69,6 +69,9 @@
 				var res = await axios.get(host + '/spaces/' + this.$route.params.space_id)
 				this.space = res.data
 				console.log(this.space)
+				
+				
+
 			}
 			catch(e){
 				return e
@@ -76,8 +79,23 @@
 		},
 		methods:{
 			editSpace(item){
+				//var space = {
+				//			_id : "5ed678d15218a773b747caa7",
+				//			name : "Praça Vila Nova de Famalicão",
+				//			reserved : false,
+				//			features : [
+				//				"Colunas",
+				//				"Projetor",
+				//				"Computador"
+				//			],
+				//			soundLimit : 80,
+				//			ocupationLimit : 50
+				//		}
+				//var res2 = axios.post(host + '/spaces/' + this.$route.params.space_id + '/editar',
+				//space
+				//)
 				this.$router.push('/spaces/' + this.$route.params.space_id + '/edit')
-			}
+			},
 		}
 	}
 </script>

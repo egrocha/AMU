@@ -36,3 +36,10 @@ Spaces.remover = id => {
         .deleteOne({_id : id})
         .exec()
 }
+
+Spaces.editar = s => {
+    console.log(s)
+    return Space
+        .updateOne({_id: s._id}, {$set: s}, {upsert: true})
+        .exec()
+}

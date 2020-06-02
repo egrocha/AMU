@@ -36,4 +36,11 @@ router.delete('/spaces/:id/remover', function(req, res, next) {
     
 });
 
+router.post('/spaces/:id/editar', function(req, res, next) {
+
+    Space.editar(req.body)
+            .then(dados => res.jsonp(dados))
+            .catch(erro => res.status(500).jsonp(erro))
+    
+});
 module.exports = router;
