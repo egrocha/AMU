@@ -21,6 +21,11 @@ export default new Router({
             path: '/spaces/:space_id/edit',
             name: 'editSpace',
             component: () => import('./views/EditSpace.vue')
+        },
+        {
+            path: '/admin',
+            name: 'admin',
+            component: () => import('./views/Admin.vue')
         }
     ]
 })
