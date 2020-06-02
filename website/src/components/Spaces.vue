@@ -1,5 +1,5 @@
 <template>
-  <div>
+	<div>
 		<v-toolbar color="blue">
       <v-toolbar-title>Administração do Sistema</v-toolbar-title>
     	<v-spacer></v-spacer>
@@ -10,28 +10,56 @@
 		</v-toolbar>
 		<v-container fluid grid-list-md text-xs-center>
 			<v-layout row wrap>
-				<v-flex xs12>
+				<v-flex xs6>
 					<v-card>
 						<v-card-text>
 							Nome do Espaço: {{ this.space.name }}
 						</v-card-text>
 					</v-card>
 				</v-flex>
-				<v-flex xs12>
+				<v-flex xs6>
 					<v-card>
 						<v-card-text>
 							Reservado: {{ this.space.reserved }}
 						</v-card-text>
 					</v-card>
 				</v-flex>
-				<v-flex xs12>
+				<v-flex v-if="this.space.reserved === true" xs4>
 					<v-card>
 						<v-card-text>
-							ID da Reserva: {{ this.space.reservation }}
+							Data de Início da Reserva: {{ this.space.startDate }}
 						</v-card-text>
 					</v-card>
 				</v-flex>
-				<v-flex xs12>
+				<v-flex v-if="this.space.reserved === true" xs4>
+					<v-card>
+						<v-card-text>
+							Data de Fim da Reserva: {{ this.space.endDate }}
+						</v-card-text>
+					</v-card>
+				</v-flex>
+				<v-flex v-if="this.space.reserved === true" xs4>
+					<v-card>
+						<v-card-text>
+							NIF: {{ this.space.nif }}
+						</v-card-text>
+					</v-card>
+				</v-flex>
+				<v-flex v-if="this.space.soundLimit" xs12>
+					<v-card>
+						<v-card-text>
+							Limíte Sonóro: {{ this.space.soundLimit }}
+						</v-card-text>
+					</v-card>
+				</v-flex>
+				<v-flex v-if="this.space.ocupationLimit" xs12>
+					<v-card>
+						<v-card-text>
+							Limíte de Ocupação: {{ this.space.ocupationLimit }}
+						</v-card-text>
+					</v-card>
+				</v-flex>
+				<v-flex v-if="this.space.features.length > 0" xs12>
 					<v-card>
 						<v-card-text>
 							Características:
@@ -46,9 +74,14 @@
 						</v-list-item>
 					</v-card>
 				</v-flex>
-				<v-btn 
-					color="primary"
-					@click="editSpace">Editar Espaço</v-btn>
+				<v-layout justify-center>
+					<v-btn 
+						color="primary"
+						@click="editSpace"
+					>
+						Editar Espaço
+					</v-btn>
+				</v-layout>
 			</v-layout>
 		</v-container>
   </div>

@@ -11,9 +11,11 @@
 		<v-container fluid grid-list-md text-xs-center>
 			<v-layout row wrap>
 				<v-flex xs12>
-					<p class="display-3 font-weight-thin">
-						Nome: Cristiano Ronaldo
-					</p>
+					<v-card>
+						<p align="center" class="display-2 font-weight-thin">
+							Nome: Cristiano Ronaldo
+						</p>
+					</v-card>
 				</v-flex>
 				<v-flex xs6>
 					<v-card>
