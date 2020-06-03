@@ -10,29 +10,36 @@
 		</v-toolbar>
 		<v-container fluid grid-list-md text-xs-center>
 			<v-layout row wrap>
-				<v-flex xs12>
-					<v-card>
-						<p align="center" class="display-2 font-weight-thin">
-							Nome: Cristiano Ronaldo
-						</p>
-					</v-card>
+				<v-flex xs6>
+					<v-flex xs12>
+						<v-card>
+							<v-card-text>
+								Nome: John Doe
+							</v-card-text>
+						</v-card>
+					</v-flex>
+					<v-flex xs12>
+						<v-card>
+							<v-card-text>
+								Email: jmac1337@gmail.com
+							</v-card-text>
+						</v-card>
+					</v-flex>
+					<v-flex xs12>
+						<v-card>
+							<v-card-text>
+								Localidade: Louro
+							</v-card-text>
+						</v-card>
+					</v-flex>
 				</v-flex>
 				<v-flex xs6>
 					<v-card>
-						<v-flex my-2 xs12>
-							<v-card-text>
-								Email: cris_ronny@gmail.com
-							</v-card-text>
-						</v-flex>
-					</v-card>
-				</v-flex>
-				<v-flex xs6>
-					<v-card>
-						<v-flex my-2 xs6>
-							<v-card-text>
-								Localidade: Vila Nova de Famalicão
-							</v-card-text>
-						</v-flex>
+						<v-layout justify-center>
+							<v-card-actions>
+								<v-img src="@/assets/admin.png"></v-img>
+							</v-card-actions>
+						</v-layout>
 					</v-card>
 				</v-flex>
 			</v-layout>

@@ -10,17 +10,26 @@
 		</v-toolbar>
 		<v-container fluid grid-list-md text-xs-center>
 			<v-layout row wrap>
-				<v-flex xs12>
+				<v-flex xs6>
 					<v-text-field
             label="Nome"
             outlined
+						id="nameInput"
 						:value="this.space.name"
           ></v-text-field>
+				</v-flex>
+				<v-flex xs6>
+					<v-card outlined>
+						<v-card-text>
+							Reservado: {{ this.space.reserved }}
+						</v-card-text>
+					</v-card>
 				</v-flex>
 				<v-flex xs12>
 					<v-text-field
             label="Limite sonóro"
             outlined
+						id = "soundLimitInput"
 						:value="this.space.soundLimit"
           ></v-text-field>
 				</v-flex>
@@ -28,14 +37,15 @@
 					<v-text-field
             label="Limite de ocupação"
             outlined
+						id = "ocupationLimitInput"
 						:value="this.space.ocupationLimit"
           ></v-text-field>
 				</v-flex>
 				<v-flex xs12>
           <v-textarea
             outlined
-            name="input-7-4"
             label="Funcionalidades"
+						id = "featuresInput"
             :value="this.features"
           ></v-textarea>
 				</v-flex>
@@ -89,12 +99,20 @@
 		},
 		methods:{
 			saveChanges(){
-				console.log(this.features)
-				//var space = {
-				//	"ocupationLimit": 1000
-				//}
+				var name = document.getElementById("nameInput").value
+				var soundLimit = document.getElementById("soundLimitInput").value
+				var ocupationLimit = document.getElementById("ocupationLimitInput").value
+				var features = document.getElementById("featuresInput").value
+				features = features.split("\n")
 
-				//var res2 = axios.post(host + '/spaces/' + this.$route.params.space_id + '/editar', space)
+				var space = {
+					"name": name,
+					"soundLimit": soundLimit,
+					"ocupationLimit": ocupationLimit,
+					"features": features
+				}
+
+				var res = axios.post(host + '/spaces/' + this.$route.params.space_id + '/editar', space)
 
 				this.$router.push('/spaces/' + this.$route.params.space_id)
 			},
