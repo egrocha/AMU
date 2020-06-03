@@ -124,10 +124,15 @@
 				//			soundLimit : 80,
 				//			ocupationLimit : 50
 				//		}
-				//var res2 = axios.post(host + '/spaces/' + this.$route.params.space_id + '/editar',
-				//space
-				//)
-				this.$router.push('/spaces/' + this.$route.params.space_id + '/edit')
+
+				//var space = {
+				//	"ocupationLimit": 1000
+				//}
+				
+				var res2 = axios.post(host + '/spaces/' + this.$route.params.space_id + '/editar',
+				space
+				)
+				//this.$router.push('/spaces/' + this.$route.params.space_id + '/edit')
 			},
 		}
 	}
