@@ -9,6 +9,14 @@ var spacesSchema = new mongoose.Schema({
         type: Boolean,
         required: true
     },
+    email: {
+        type: String,
+        required: false
+    },
+    nif: {
+        type: Number,
+        required: false
+    },
     features: {
         type: [{type: String}],
         required: false
@@ -19,10 +27,6 @@ var spacesSchema = new mongoose.Schema({
     },
     endDate: {
         type: String,
-        required: false
-    },
-    nif: {
-        type: Number,
         required: false
     },
     soundLimit: {
