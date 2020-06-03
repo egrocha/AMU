@@ -24,21 +24,28 @@
 						</v-card-text>
 					</v-card>
 				</v-flex>
-				<v-flex v-if="this.space.reserved === true" xs4>
+				<v-flex v-if="this.space.reserved === true" xs6>
 					<v-card>
 						<v-card-text>
 							Data de Início da Reserva: {{ this.space.startDate }}
 						</v-card-text>
 					</v-card>
 				</v-flex>
-				<v-flex v-if="this.space.reserved === true" xs4>
+				<v-flex v-if="this.space.reserved === true" xs6>
 					<v-card>
 						<v-card-text>
 							Data de Fim da Reserva: {{ this.space.endDate }}
 						</v-card-text>
 					</v-card>
 				</v-flex>
-				<v-flex v-if="this.space.reserved === true" xs4>
+				<v-flex v-if="this.space.reserved === true" xs6>
+					<v-card>
+						<v-card-text>
+							Email: {{ this.space.email }}
+						</v-card-text>
+					</v-card>
+				</v-flex>
+				<v-flex v-if="this.space.reserved === true" xs6>
 					<v-card>
 						<v-card-text>
 							NIF: {{ this.space.nif }}
@@ -98,13 +105,8 @@
 		},
 		mounted: async function(){
 			try{
-				console.log(this.$route.params.space_id)
 				var res = await axios.get(host + '/spaces/' + this.$route.params.space_id)
 				this.space = res.data
-				console.log(this.space)
-				
-				
-
 			}
 			catch(e){
 				return e
@@ -113,26 +115,27 @@
 		methods:{
 			editSpace(item){
 				//var space = {
-				//			_id : "5ed678d15218a773b747caa7",
-				//			name : "Praça Vila Nova de Famalicão",
-				//			reserved : false,
-				//			features : [
-				//				"Colunas",
-				//				"Projetor",
-				//				"Computador"
-				//			],
-				//			soundLimit : 80,
-				//			ocupationLimit : 50
-				//		}
+				//	_id : "5ed678d15218a773b747caa7",
+				//	name : "Praça Vila Nova de Famalicão",
+				//	reserved : false,
+				//	features : [
+				//		"Colunas",
+				//		"Projetor",
+				//		"Computador"
+				//	],
+				//	soundLimit : 80,
+				//	ocupationLimit : 50
+				//}
 
 				//var space = {
 				//	"ocupationLimit": 1000
 				//}
+
+				//var res2 = axios.post(host + '/spaces/' + this.$route.params.space_id + '/editar',
+				//space
+				//)
 				
-				var res2 = axios.post(host + '/spaces/' + this.$route.params.space_id + '/editar',
-				space
-				)
-				//this.$router.push('/spaces/' + this.$route.params.space_id + '/edit')
+				this.$router.push('/spaces/' + this.$route.params.space_id + '/edit')
 			},
 		}
 	}
