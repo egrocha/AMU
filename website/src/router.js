@@ -13,6 +13,11 @@ export default new Router({
             component: () => import('./views/Index.vue')
         },
         {
+            path: '/spaces/create',
+            name: 'create',
+            component: () => import('./views/CreateSpace.vue')
+        },
+        {
             path: '/spaces/:space_id',
             name: 'spaces',
             component: () => import('./views/Spaces.vue')

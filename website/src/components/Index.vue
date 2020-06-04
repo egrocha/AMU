@@ -56,6 +56,17 @@
               </template>
             </v-data-table>
           </v-flex>
+
+				  <v-flex xs12>
+				  	<v-layout justify-center>
+				  		<v-btn
+				  			color="primary"
+				  			@click="createSpace"
+				  		>
+				  			Criar Espaço Novo
+				  		</v-btn>
+				  	</v-layout>
+				  </v-flex>
         </v-layout>
       </v-container>
     </div>
@@ -98,7 +109,10 @@
     methods: {
       redirectSpace(item){
         this.$router.push('/spaces/' + item._id)
-      }
+      },
+      createSpace(item){
+				this.$router.push('/spaces/create')
+			}
     }
   }
 </script>
